@@ -15,7 +15,7 @@ ENV M2_HOME /usr/local/apache-maven-3.3.3
 # SPARK 1.6.1
 ENV MAVEN_OPTS "-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
 RUN git clone https://github.com/ElfoLiNk/spark.git && \
-    cd spark && ./dev/change-scala-version.sh 2.11 && build/mvn -Pyarn -Phadoop-2.6 -Dhadoop.version=2.7.2 -Dscala-2.11 -Dmaven.test.skip=true  -DskipTests clean package && cd .. && \
+    cd spark && ./dev/change-scala-version.sh 2.11 && build/mvn -Pyarn -Phadoop-2.6 -Dhadoop.version=2.7.2 -Dscala-2.11 -Dmaven.test.skip=true  -DskipTests --quiet clean package && cd .. && \
     sudo mv spark /usr/local/spark
 ENV SPARK_HOME /usr/local/spark
 ENV PATH $PATH:$SPARK_HOME/bin
