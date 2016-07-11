@@ -12,9 +12,9 @@ RUN wget http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.3/binaries/apa
     sudo ln -s /usr/local/apache-maven-3.3.3/bin/mvn /usr/bin/mvn
 ENV M2_HOME /usr/local/apache-maven-3.3.3
 
-# SPARK 1.6.1
+# SPARK BRANCH 2.0
 ENV MAVEN_OPTS "-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
-RUN git clone https://github.com/ElfoLiNk/spark.git && \
+RUN git clone -b branch-2.0 https://github.com/ElfoLiNk/spark.git && \
     cd spark && ./dev/change-scala-version.sh 2.11 && build/mvn -Pyarn -Phadoop-2.6 -Dhadoop.version=2.7.2 -Dscala-2.11 -Dmaven.test.skip=true  -DskipTests --quiet clean package && cd .. && \
     sudo mv spark /usr/local/spark && echo 'spark.eventLog.enabled True' >> /usr/local/spark/conf/spark-defaults.conf
 ENV SPARK_HOME /usr/local/spark
