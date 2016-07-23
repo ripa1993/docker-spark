@@ -3,6 +3,7 @@ FROM ubuntu:14.04
 # JAVA 1.8
 RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:webupd8team/java &&  apt-get update &&  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections && \
     apt-get install -y git oracle-java8-installer && apt-get clean autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
 
 # SCALA 2.11.8
 RUN wget http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.deb && sudo dpkg -i scala-2.11.8.deb && rm scala-2.11.8.deb  && apt-get clean autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/
