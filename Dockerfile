@@ -17,7 +17,7 @@ ENV M2_HOME /usr/local/apache-maven-3.3.9
 ENV MAVEN_OPTS "-Xmx2g -XX:ReservedCodeCacheSize=512m"
 RUN git clone https://github.com/ElfoLiNk/spark.git --depth=1 --branch=branch-1.6 && \
     cd spark && ./dev/change-scala-version.sh 2.11 && \
-	sed -i '170s{.*{BUILD_COMMAND=("$MVN" -T 1C clean package -DskipTests --quiet $@){' && \
+	sed -i '170s{.*{BUILD_COMMAND=("$MVN" -T 1C clean package -DskipTests --quiet $@){' make-distribution.sh && \
     ./make-distribution.sh --name docker --tgz -Pyarn -Phadoop-2.6 -Dhadoop.version=2.7.2 -Dscala-2.11 -Dmaven.test.skip=true && \
     sudo tar -xf spark-*.tgz -C /usr/local/ && sudo mv /usr/local/spark-* /usr/local/spark && \
     cd .. && rm -rf spark && \
