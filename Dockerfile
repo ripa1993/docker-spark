@@ -20,7 +20,7 @@ RUN git clone https://github.com/ElfoLiNk/spark.git --depth=1 --branch=branch-2.
     cd .. && rm -rf spark && \
     echo 'spark.eventLog.enabled true' >> /usr/local/spark/conf/spark-defaults.conf && mv /usr/local/spark/conf/log4j.properties.template /usr/local/spark/conf/log4j.properties && \
     mkdir -p /usr/local/spark/assembly/target/scala-2.11 && \
-    ln -s /usr/local/spark/lib/* /usr/local/spark/assembly/target/scala-2.11/
+    ln -s /usr/local/spark/jars /usr/local/spark/assembly/target/scala-2.11/jars
 ENV SPARK_HOME /usr/local/spark
 ENV PATH $PATH:$SPARK_HOME/bin
 
