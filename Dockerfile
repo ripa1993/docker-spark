@@ -23,6 +23,7 @@ RUN git clone https://github.com/ElfoLiNk/spark.git --depth=1 --branch=branch-2.
     ln -s /usr/local/spark/jars /usr/local/spark/assembly/target/scala-2.11/jars
 ENV SPARK_HOME /usr/local/spark
 ENV PATH $PATH:$SPARK_HOME/bin
+ENV MALLOC_ARENA_MAX 4
 
 
 
