@@ -15,7 +15,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
 RUN git clone https://github.com/ElfoLiNk/spark.git --depth=1 --branch=branch-2.0 && \
     cd spark && ./dev/change-scala-version.sh 2.11 && \
     sed -i '153s{.*{BUILD_COMMAND=("$MVN" -T 1C clean package -DskipTests --quiet $@){' ./dev/make-distribution.sh && \
-    ./dev/make-distribution.sh --name docker --tgz -Pyarn -Phadoop-2.7 -Dhadoop.version=2.7.2 -Dscala-2.11 -Dmaven.test.skip=true && \
+    ./dev/make-distribution.sh --name docker --tgz -Phive -Pyarn -Phadoop-2.7 -Dhadoop.version=2.7.2 -Dscala-2.11 -Dmaven.test.skip=true && \
     sudo tar -xf spark-*.tgz -C /usr/local/ && sudo mv /usr/local/spark-* /usr/local/spark && \
     cd .. && rm -rf spark && \
     echo 'spark.eventLog.enabled true' >> /usr/local/spark/conf/spark-defaults.conf && mv /usr/local/spark/conf/log4j.properties.template /usr/local/spark/conf/log4j.properties && \
