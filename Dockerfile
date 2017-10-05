@@ -12,7 +12,7 @@ RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | t
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
 
 # SPARK 2.0
-RUN git clone https://github.com/gioenn/xSpark.git --depth=1 --branch=dev-multiapp && \
+RUN git clone https://github.com/gioenn/xSpark.git spark --depth=1 --branch=dev-multiapp && \
     cd spark && ./dev/change-scala-version.sh 2.11 && \
     sed -i '153s{.*{BUILD_COMMAND=("$MVN" -T 1C clean package -DskipTests --quiet $@){' ./dev/make-distribution.sh && \
     ./dev/make-distribution.sh --name docker --tgz -Phive -Pyarn -Phadoop-2.7 -Dhadoop.version=2.7.2 -Dscala-2.11 -Dmaven.test.skip=true && \
